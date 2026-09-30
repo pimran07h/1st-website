@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agri Advisory // Farmer Intelligence System. Centralized agronomic intelligence, predictive soil diagnostics, meteorological telemetry, and APMC market prices.">
+  <title>🌾 AGRI ADVISORY // FARMER INTELLIGENCE SYSTEM</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="portal-body">
+
+  <!-- ========================================================================
+       TOP UTILITY STRIP (Official Government / Institutional Header)
+       ======================================================================== -->
+  <div class="top-util-bar">
+    <div class="util-inner">
+      <div class="util-left">
+        <span class="gov-entity">MINISTRY OF AGRICULTURE & COGNITIVE EQUILIBRIUM • GOVT. OF INDIA</span>
+        <span class="clearance-tag">Clearance: Level 1 Registered Cultivator</span>
+      </div>
+      <div class="util-right">
+        <!-- The Wrong Persistence: remembers Onion, forgets personal details -->
+        <span class="session-memory-pill">Session Archive: Last selected crop: Onion (User credentials purged)</span>
+        <button class="btn-lang-subtle" id="btnLangToggle">Language: English (Official) ▾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PRIMARY HEADER (Looks 100% Legitimate & Professional)
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <div class="brand-cluster">
+        <!-- Imperceptibly slow 47-second rotating official seal -->
+        <div class="official-seal" id="officialSeal" title="National Agronomy Commission Seal">
+          <svg viewBox="0 0 100 100" class="seal-svg">
+            <circle cx="50" cy="50" r="44" stroke="#1b4332" stroke-width="3" fill="#f8f6f0" />
+            <path d="M50 10 L50 90 M10 50 L90 50 M22 22 L78 78 M22 78 L78 22" stroke="#2d6a4f" stroke-width="2.5" />
+            <circle cx="50" cy="50" r="18" fill="#2d6a4f" />
+            <circle cx="50" cy="50" r="7" fill="#ffffff" />
+          </svg>
+        </div>
+        <!-- Rogue tiny weather icon wedged between seal and title -->
+        <a href="#weather-section" class="rogue-weather-pin" title="Meteorological Shortcut (Rogue Placement)">⛅</a>
+
+        <div class="brand-text">
+          <h1 class="portal-brand-title">🌾 AGRI ADVISORY</h1>
+          <p class="portal-brand-subtitle">FARMER INTELLIGENCE SYSTEM — CENTRALIZED AGRONOMY PLATFORM</p>
+        </div>
+      </div>
+
+      <div class="header-tools">
+        <div class="search-input-wrap">
+          <input type="text" id="headerSearch" placeholder="Search cultivars, nitrates, APMC yards..." class="portal-search-input">
+          <button class="btn-search-execute" id="btnSearchGo">Find</button>
+        </div>
+
+        <!-- NOTIFICATION COUNTER: Switches between 0 and 0+ -->
+        <div class="notif-container" id="notifContainer">
+          <button class="btn-notif-monitor" id="btnNotifToggle" aria-expanded="false" title="Notification Dispatches">
+            <span class="bell-icon">🔔</span>
+            <span class="notif-label-text">Dispatches:</span>
+            <span class="notif-badge-pill" id="notifBadge">0</span>
+          </button>
+
+          <div class="notif-dropdown-panel" id="notifDropdown">
+            <div class="dropdown-header">
+              <span>SYSTEM DISPATCHES</span>
+              <span class="audit-code">AUDIT-OK</span>
+            </div>
+            <ul class="notif-entries">
+              <li class="notif-row">
+                <span class="bullet-dot">●</span>
+                <div class="notif-text-wrap">
+                  <p class="notif-primary-msg">Your dashboard is ready.</p>
+                  <small>Recorded 2 minutes ago</small>
+                </div>
+              </li>
+              <li class="notif-row">
+                <span class="bullet-dot">●</span>
+                <div class="notif-text-wrap">
+                  <p class="notif-primary-msg">Weather information has been checked.</p>
+                  <small>Autonomous routine sync</small>
+                </div>
+              </li>
+              <li class="notif-row">
+                <span class="bullet-dot">●</span>
+                <div class="notif-text-wrap">
+                  <p class="notif-primary-msg">You have successfully remained on this page.</p>
+                  <small>Session integrity verified</small>
+                </div>
+              </li>
+              <li class="notif-row">
+                <span class="bullet-dot">●</span>
+                <div class="notif-text-wrap">
+                  <p class="notif-primary-msg">No new notifications.</p>
+                  <small>Current baseline status</small>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- THE DEADPAN "Do Not Touch" BUTTON -->
+        <button class="btn-do-not-touch" id="btnDoNotTouch" title="Administrative instruction">
+          ⚠️ Do Not Touch
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       PRIMARY NAVIGATION: Home appears twice, More dropdown opens upward
+       ======================================================================== -->
+  <nav class="portal-navigation" id="portalNav" aria-label="Portal main navigation">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <!-- 1st Home -->
+        <li class="nav-item active"><a href="#home-section" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#crop-section" class="nav-link" id="navCropAdvice">Crop Advisory</a></li>
+        <li class="nav-item"><a href="#weather-section" class="nav-link">Weather</a></li>
+        <li class="nav-item"><a href="#soil-section" class="nav-link">Soil Diagnostics</a></li>
+        <li class="nav-item"><a href="#fertilizer-section" class="nav-link">Fertilizer Dosage</a></li>
+        <!-- 2nd Home - Inexplicably placed in the center -->
+        <li class="nav-item nav-duplicate-home"><a href="#home-section" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#pest-section" class="nav-link">Pest Surveillance</a></li>
+        <li class="nav-item"><a href="#market-section" class="nav-link">Market Prices</a></li>
+        <li class="nav-item"><a href="#schemes-section" class="nav-link">Government Schemes</a></li>
+        <li class="nav-item"><a href="#advanced-section" class="nav-link nav-link-advanced">Advanced Advisory</a></li>
+        <li class="nav-item"><a href="#contact-section" class="nav-link">Contact</a></li>
+
+        <!-- More Dropdown that opens UPWARD -->
+        <li class="nav-item nav-more-item" id="moreDropdownWrap">
+          <button class="nav-more-trigger" id="btnMoreNav">More ▾</button>
+          <div class="upward-flyout-menu" id="upwardMenu">
+            <a href="#schemes-section" class="upward-link">Emergency Borewell Subvention Protocol (Critical)</a>
+            <a href="#soil-section" class="upward-link">Direct Gypsum & Zinc Allocation (Statutory)</a>
+            <a href="#market-section" class="upward-link">Tractor License Chassis Renewal Annexure 4</a>
+            <a href="#contact-section" class="upward-link">Archived Agronomy Minutes (1998)</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SUB-BANNER STRIP: Switches terminology on action -->
+  <div class="sub-banner-bar" id="subBannerBar">
+    <div class="sub-banner-inner">
+      <span class="sub-banner-tag" id="subBannerTag">OFFICIAL DIRECTIVE</span>
+      <span class="sub-banner-title" id="subBannerTitle">Standard Agricultural Advisory Protocol Active • Kharif / Rabi Transition Window</span>
+      <span class="sub-banner-ref font-mono">REF: AG-9021-X</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MAIN CONTENT CONTAINER
+       ======================================================================== -->
+  <main class="portal-main-content" id="mainContent">
+
+    <!-- ======================================================================
+         SECTION 1: HERO OVERVIEW (Clean, Enterprise, First 5 Seconds Impression)
+         Contains: Button pair touching + 140px void + Giant Cancel + Stealth Link
+         ====================================================================== -->
+    <section class="portal-card hero-overview-card" id="home-section">
+      <div class="hero-left-col">
+        <span class="kicker-label">PRECISION COGNITIVE AGRONOMY // NATIONAL DIRECTORY</span>
+        <!-- Squished heading jammed on top of text (-4px margin) -->
+        <h2 class="hero-main-title">Centralized Harvest Intelligence & District Diagnostics</h2>
+        <p class="hero-body-text">
+          Standardized agricultural advisory console. Cultivators may query baseline meteorological telemetry, verify soil stoichiometric balances, or initiate computational advisory certificates for notified district zones.
+        </p>
+
+        <div class="hero-actions-row">
+          <!-- Button labeled "Start Advisory", which later morphs in the form header -->
+          <button class="btn btn-primary-enterprise" id="btnStartAdvisory">
+            Start Advisory
+          </button>
+
+          <!-- Touching button (-2px margin) -->
+          <button class="btn btn-secondary-touching" id="btnDistrictSync">
+            District Sensor Sync
+          </button>
+
+          <!-- 140px whitespace void -->
+          <div class="whitespace-void-140"></div>
+
+          <!-- Cancel button is HUGE and GREEN -->
+          <button class="btn btn-giant-green-cancel" id="btnHeroCancel">
+            Cancel Consultation
+          </button>
+
+          <!-- "Learn More" disguised as plain un-underlined text -->
+          <a href="#crop-section" class="stealth-text-action" id="stealthLearnMore">Learn More</a>
+        </div>
+      </div>
+
+      <div class="hero-right-col">
+        <div class="stat-highlight-box">
+          <span class="stat-big-number font-comic">94.8821%</span>
+          <span class="stat-label">Regional Agronomic Concordance Rate</span>
+          <small class="stat-variance font-mono">Calculated variance: ±0.00018%</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: PEST SURVEILLANCE (Reverse Visual Priority)
+         PEST DETECTED is calm muted gray; harmless "Last Updated" is bright red!
+         ====================================================================== -->
+    <section class="section-block" id="pest-section">
+      <div class="section-header-row">
+        <h3 class="section-title">PHYTOSANITARY SURVEILLANCE & PEST WARNINGS</h3>
+        <span class="section-sub-tag">ZONAL INFECTION RADAR</span>
+      </div>
+
+      <div class="pest-alert-container">
+        <!-- PEST WARNING: Calm, sleepy, corporate muted gray! -->
+        <div class="pest-card-calm-gray">
+          <div class="pest-header-flex">
+            <span class="pest-badge-muted">🪲 PEST DETECTED</span>
+            <span class="pest-scientific-name font-mono">Spodoptera frugiperda (Fall Armyworm)</span>
+          </div>
+          <h4 class="pest-headline">Larval Defoliation Advisory — Western River Basin</h4>
+          <p class="pest-text">
+            Field traps indicate larval density has exceeded economic injury threshold parameters across vegetative maize and sorghum tracts. Recommended intervention: Neem Azadirachtin 1500 PPM or Emamectin Benzoate 5% SG.
+          </p>
+          <div class="pest-action-wrap">
+            <button class="btn-calm-protocol">View Quarantine Protocol</button>
+          </div>
+        </div>
+
+        <!-- HARMLESS METADATA: Bright, alarming crimson red! -->
+        <div class="harmless-box-alarm-red">
+          <div class="alarm-meta-header">
+            <span class="alarm-siren">🚨 CRITICAL AUDIT STAMP</span>
+            <span class="alarm-timestamp font-mono">AUDIT-CODE: 04:12-AM</span>
+          </div>
+          <div class="alarm-main-heading">
+            DATA SYNCHRONIZED 3 MINUTES AGO
+          </div>
+          <p class="alarm-description">
+            Notice: Seed coats protect the embryo plant from mechanical injury and harsh desiccating elements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: METEOROLOGICAL TELEMETRY (Weather Section)
+         Temp on Far Left, Label on Far Right, Purple Button, Horizontal Table
+         ====================================================================== -->
+    <section class="section-block" id="weather-section">
+      <div class="section-header-row">
+        <h3 class="section-title">METEOROLOGICAL SENSORY OBSERVATIONS & RADAR</h3>
+        <!-- Dark Purple Button -->
+        <button class="btn-weather-purple" id="btnWeatherPurple">Refresh Radar Feed</button>
+      </div>
+
+      <div class="weather-dashboard-card">
+        <!-- The Left-Right layout disconnect -->
+        <div class="weather-split-banner">
+          <div class="weather-temp-left">
+            <span class="temp-digits" id="tempDisplay">31.4</span>
+            <span class="temp-unit">°C</span>
+          </div>
+
+          <!-- Weather icon awkwardly placed between Wind & Barometric readings -->
+          <div class="weather-awkward-cluster">
+            <div class="metric-mini-group">
+              <span class="metric-mini-label">Barometric Gradient</span>
+              <span class="metric-mini-val font-mono">1013.2 hPa</span>
+            </div>
+            <!-- Weather icon stuck in the center -->
+            <div class="weather-icon-pinned" title="Weather icon between unrelated metrics">⛅</div>
+            <div class="metric-mini-group">
+              <span class="metric-mini-label">Surface Wind Velocity</span>
+              <span class="metric-mini-val font-mono">14.2 km/h ENE</span>
+            </div>
+          </div>
+
+          <!-- Temperature label situated 450px away on the FAR RIGHT -->
+          <div class="weather-label-right">
+            CURRENT AMBIENT AIR TEMPERATURE
+          </div>
+        </div>
+
+        <!-- Anti-Hierarchy: Last updated is large, Rain prob is tiny -->
+        <div class="weather-anti-hierarchy-strip">
+          <div class="anti-col-large">
+            <span class="anti-sub">STATUS DISPATCH:</span>
+            <div class="timestamp-prominent font-mono">Last Updated 4 minutes ago</div>
+          </div>
+          <div class="anti-col-small">
+            <span class="anti-sub">PRECIPITATION RISK HEDGE:</span>
+            <div class="rain-prob-tiny font-mono">Rain Probability: 72%</div>
+          </div>
+        </div>
+
+        <!-- 7-Day Forecast Table with inverted columns -->
+        <div class="forecast-table-wrapper">
+          <div class="forecast-nav-bar">
+            <h5 class="forecast-heading">7-DAY DISTRICT FORECAST (ALGORITHM v4.11)</h5>
+            <div class="period-cycler">
+              <button class="btn-cycler-arrow" id="btnPeriodPrev">◀</button>
+              <span class="period-label font-mono" id="periodDisplay">Horizon: Lunar Octave 1</span>
+              <button class="btn-cycler-arrow" id="btnPeriodNext">▶</button>
+            </div>
+          </div>
+
+          <div class="forecast-table-scroll">
+            <table class="forecast-table">
+              <thead>
+                <tr>
+                  <th class="th-right">Anticipated Sky Condition</th>
+                  <th class="th-left">Precipitation Probability</th>
+                  <th class="th-center">Day Designation</th>
+                  <th class="th-right">Evaporation Factor</th>
+                  <th class="th-left">Max / Min Readings</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="f-row-even">
+                  <td class="td-right">Partly Obscured</td>
+                  <td class="td-left">12%</td>
+                  <td class="td-center"><strong>Today</strong></td>
+                  <td class="td-right font-mono">4.8 mm/day</td>
+                  <td class="td-left">33°C / 22°C</td>
+                </tr>
+                <tr class="f-row-odd">
+                  <td class="td-right">Scattered Cumulus</td>
+                  <td class="td-left">25%</td>
+                  <td class="td-center"><strong>Thursday</strong></td>
+                  <td class="td-right font-mono">4.1 mm/day</td>
+                  <td class="td-left">31°C / 21°C</td>
+                </tr>
+                <tr class="f-row-even">
+                  <td class="td-right">Precipitation Likelihood</td>
+                  <td class="td-left font-bold-red">78%</td>
+                  <td class="td-center"><strong>Friday</strong></td>
+                  <td class="td-right font-mono">2.2 mm/day</td>
+                  <td class="td-left">27°C / 19°C</td>
+                </tr>
+                <tr class="f-row-odd">
+                  <td class="td-right">Clear & Arid</td>
+                  <td class="td-left">5%</td>
+                  <td class="td-center"><strong>Saturday</strong></td>
+                  <td class="td-right font-mono">5.6 mm/day</td>
+                  <td class="td-left">34°C / 23°C</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: 8 CROP CARDS (Gazetteer of Designated Cultivars)
+         Each card subtly, believably different; 78px whitespace gap above
+         ====================================================================== -->
+    <section class="section-block" id="crop-section">
+      <!-- 78px Whitespace underneath heading -->
+      <div class="crop-header-gap-box">
+        <h3 class="section-title">OFFICIAL CROP SELECTION & HARVEST METRICS</h3>
+        <p class="section-subtitle">Comprehensive gazetteer of statutory crops under minimum support and input subsidization.</p>
+      </div>
+
+      <!-- Filter pills with confirmation on reset -->
+      <div class="crop-filter-strip">
+        <span class="filter-caption">Cultivar Classification:</span>
+        <button class="filter-btn active" data-filter="all">All Crops</button>
+        <button class="filter-btn" data-filter="kharif">Kharif Season</button>
+        <button class="filter-btn" data-filter="rabi">Rabi Season</button>
+        <button class="filter-btn" data-filter="cash">Commercial</button>
+        <button class="filter-btn btn-reset-view" id="btnResetFilter">Reset Filter Parameters</button>
+      </div>
+
+      <div class="crop-cards-grid" id="cropCardsGrid">
+
+        <!-- 1. WHEAT: Square image (1:1), Arial Title, Times New Roman Fertilizer label, Comic Sans number -->
+        <article class="crop-card card-wheat" data-season="rabi">
+          <div class="crop-frame-square">
+            <img src="assets/wheat.jpg" alt="Wheat crop stalks" class="img-square" loading="lazy">
+            <span class="crop-badge-overlay">Rabi Core</span>
+          </div>
+          <div class="crop-card-content">
+            <h4 class="crop-card-name font-arial">Wheat (Triticum aestivum)</h4>
+            <p class="crop-card-desc">Major cereal grain requiring temperate canopy conditions and moisture during crown root initiation.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">45 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper">
+              <button class="btn-crop-action btn-icon-right" data-crop="Wheat">Proceed ➔</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. RICE: Circular masked image, Centered alignment -->
+        <article class="crop-card card-rice text-center" data-season="kharif">
+          <div class="crop-frame-circle">
+            <img src="assets/rice.jpg" alt="Rice paddy field" class="img-circle" loading="lazy">
+          </div>
+          <div class="crop-card-content">
+            <h4 class="crop-card-name font-arial">Rice (Oryza sativa)</h4>
+            <p class="crop-card-desc">Water-intensive staple crop requiring puddled seedbed preparation and continuous standing layer.</p>
+            <div class="fertilizer-mini-box justify-center">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">60 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper justify-center">
+              <button class="btn-crop-action btn-icon-left" data-crop="Rice">➔ Proceed</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. COTTON: NO IMAGE AT ALL (as explicitly required) -->
+        <article class="crop-card card-cotton" data-season="cash">
+          <div class="crop-frame-empty">
+            <span class="empty-icon">🚫</span>
+            <span class="empty-text">[ VISUAL RECORD NOT SUPPLIED BY SUB-COMMITTEE ]</span>
+          </div>
+          <div class="crop-card-content">
+            <h4 class="crop-card-name font-arial">Cotton (Gossypium)</h4>
+            <p class="crop-card-desc">Deep-rooted cash fiber crop prone to sucking pests, pink bollworm, and premature square drop.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">35 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper">
+              <button class="btn-crop-action" data-crop="Cotton">Continue</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. SOYBEAN: ENORMOUS IMAGE (Takes up 65% of the card height) -->
+        <article class="crop-card card-soybean" data-season="kharif">
+          <div class="crop-frame-enormous">
+            <img src="assets/soybean.jpg" alt="Soybean farm field" class="img-enormous" loading="lazy">
+          </div>
+          <div class="crop-card-content compact-padding">
+            <h4 class="crop-card-name font-arial">Soybean (Glycine max)</h4>
+            <p class="crop-card-desc">Leguminous oilseed fixing nitrogen via rhizobium symbiosis.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">20 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper">
+              <button class="btn-crop-action" data-crop="Soybean">Next</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. ONION: CROP NAME ALIGNED TO THE RIGHT -->
+        <article class="crop-card card-onion" data-season="rabi">
+          <div class="crop-frame-standard">
+            <img src="assets/onion.jpg" alt="Harvested red onions" class="img-standard" loading="lazy">
+          </div>
+          <div class="crop-card-content">
+            <!-- Right-aligned crop name -->
+            <h4 class="crop-card-name font-arial text-right">ONION (Allium cepa)</h4>
+            <p class="crop-card-desc">Shallow-rooted bulb vegetable highly reactive to photoperiod duration and moisture stress.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">50 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper">
+              <button class="btn-crop-action" data-crop="Onion">Continue →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. TOMATO: ACTION BUTTON PLACED AT THE TOP ABOVE THE IMAGE -->
+        <article class="crop-card card-tomato" data-season="cash">
+          <!-- Button positioned at the TOP -->
+          <div class="card-top-action-mount">
+            <button class="btn-crop-action btn-top-full" data-crop="Tomato">Consult Tomato Dosage</button>
+          </div>
+          <div class="crop-frame-standard">
+            <img src="assets/tomato.jpg" alt="Ripe tomatoes on vine" class="img-standard" loading="lazy">
+          </div>
+          <div class="crop-card-content">
+            <h4 class="crop-card-name font-arial">Tomato (Solanum lycopersicum)</h4>
+            <p class="crop-card-desc">High-value solanaceous crop requiring trellising and supplemental calcium to prevent blossom end rot.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">55 kg/acre</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. MAIZE: ASYMMETRIC BORDER RADIUS (24px 0px 0px 0px) -->
+        <article class="crop-card card-maize" data-season="kharif">
+          <div class="crop-frame-standard">
+            <img src="assets/maize.jpg" alt="Maize corn stalks" class="img-standard" loading="lazy">
+          </div>
+          <div class="crop-card-content">
+            <h4 class="crop-card-name font-arial">Maize (Zea mays)</h4>
+            <p class="crop-card-desc">Heavy feeder C4 photosynthetic cereal requiring balanced nitrogen application during knee-high stage.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <span class="fert-val font-comic">48 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper">
+              <button class="btn-crop-action" data-crop="Maize">Proceed</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. SUGARCANE: WAVY GREEN UNDERLINE & ITALICIZED FIGURES -->
+        <article class="crop-card card-sugarcane" data-season="cash">
+          <div class="crop-frame-standard">
+            <img src="assets/sugarcane.jpg" alt="Sugarcane plantation" class="img-standard" loading="lazy">
+          </div>
+          <div class="crop-card-content">
+            <!-- Wavy green underline -->
+            <h4 class="crop-card-name font-arial wavy-green-title">Sugarcane (Saccharum officinarum)</h4>
+            <p class="crop-card-desc">Long-duration perennial crop requiring continuous irrigation intervals and periodic earthing-up.</p>
+            <div class="fertilizer-mini-box">
+              <span class="fert-label font-times">Recommended fertilizer:</span>
+              <!-- Italicized figure -->
+              <span class="fert-val font-comic text-italic">120 kg/acre</span>
+            </div>
+            <div class="crop-btn-wrapper">
+              <button class="btn-crop-action" data-crop="Sugarcane">Continue</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: SOIL & FERTILIZER DIAGNOSTICS
+         Orange Soil Banner, Absurd Pie Chart + 65% Legend, 5 Decimals,
+         Baby Pink Fertilizer Section with 44px vs 3px padding contrast
+         ====================================================================== -->
+    <div class="split-columns-unequal">
+
+      <!-- Soil Diagnostics -->
+      <section class="section-block soil-sub-section" id="soil-section">
+        <!-- Bright Orange Status Banner -->
+        <div class="soil-orange-banner">
+          <span class="banner-bold">SOIL STRATUM DIAGNOSTIC ACTIVE • DISTRICT ZONAL CORE</span>
+          <span class="banner-iso font-mono">ISO-SOIL-9402</span>
+        </div>
+
+        <div class="soil-card-wrapper">
+          <div class="soil-header-flex">
+            <h4 class="soil-title">SOIL PHYSICO-CHEMICAL EQUILIBRIUM</h4>
+            <span class="soil-badge">Status: Aerated</span>
+          </div>
+
+          <!-- The Absurd Pie Chart for Soil Nutrients -->
+          <div class="soil-chart-container">
+            <div class="soil-chart-pie-box">
+              <svg viewBox="0 0 160 160" class="soil-pie-svg" aria-label="Soil nutrient breakdown pie chart">
+                <path d="M 80 80 L 80 10 A 70 70 0 0 1 146.5 101.6 Z" fill="#2d6a4f" />
+                <path d="M 80 80 L 146.5 101.6 A 70 70 0 0 1 42.1 138.8 Z" fill="#52b788" />
+                <path d="M 80 80 L 42.1 138.8 A 70 70 0 0 1 23.3 45.2 Z" fill="#ff781f" />
+                <path d="M 80 80 L 23.3 45.2 A 70 70 0 0 1 80 10 Z" fill="#d4a373" />
+                <circle cx="80" cy="80" r="4" fill="#ffffff" />
+              </svg>
+              <span class="pie-caption">Figure 3.1: Proportions</span>
+            </div>
+
+            <!-- GIGANTIC 65% LEGEND with tiny 9px labels -->
+            <div class="soil-oversized-legend">
+              <div class="legend-header">LEGEND OF EQUILIBRIUM (N-P-K-OC METRICS)</div>
+              <ul class="legend-items font-mono">
+                <li><span class="chip-n"></span> <span class="legend-label-tiny">Nitrogen (N):</span> <strong>284.09114 kg/ha</strong></li>
+                <li><span class="chip-p"></span> <span class="legend-label-tiny">Phosphorus (P2O5):</span> <strong>18.44291 kg/ha</strong></li>
+                <li><span class="chip-k"></span> <span class="legend-label-tiny">Potassium (K2O):</span> <strong>172.80933 kg/ha</strong></li>
+                <li><span class="chip-oc"></span> <span class="legend-label-tiny">Organic Carbon (OC):</span> <strong>0.58241%</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Numbers rendered to 5 decimal places -->
+          <div class="soil-metrics-bar font-mono">
+            <div class="metric-cell">
+              <span class="cell-sub">Reaction (pH):</span>
+              <span class="cell-val">6.43827</span>
+            </div>
+            <div class="metric-cell">
+              <span class="cell-sub">Gravimetric Moisture:</span>
+              <span class="cell-val">34.19802%</span>
+            </div>
+            <div class="metric-cell">
+              <span class="cell-sub">Electrical Cond. (EC):</span>
+              <span class="cell-val">0.38119 dS/m</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fertilizer Dosage: Baby Pink Container -->
+      <section class="section-block fertilizer-baby-pink-panel" id="fertilizer-section">
+        <div class="pink-panel-header">
+          <h4 class="pink-panel-title">FERTILIZER DOSAGE & UREA PARTITIONING MODULE</h4>
+          <span class="pink-panel-badge">Schedule V</span>
+        </div>
+
+        <p class="pink-panel-desc">
+          Recommended for <span class="text-uppercase-bold">OPTIMAL</span> nitrogen uptake during vegetative <span class="text-uppercase-bold">STAGE</span>. Apply secondary top-dressing prior to terminal panicle initiation.
+        </p>
+
+        <div class="fertilizer-contrast-cards">
+          <!-- Card with ENORMOUS 44px padding -->
+          <div class="fert-card-enormous-pad">
+            <h5 class="fert-card-title">Basal Application (At Sowing)</h5>
+            <p class="fert-card-details">DAP: 50 kg/acre + MOP: 25 kg/acre + Zinc Sulphate: 10 kg/acre.</p>
+            <span class="fert-card-badge">Furrow Incorporated</span>
+          </div>
+
+          <!-- Adjacent Card with ZERO 3px padding (text touching border) -->
+          <div class="fert-card-zero-pad">
+            <h5 class="fert-card-title">First Top Dressing (21 DAS)</h5>
+            <p class="fert-card-details">Neem-Coated Urea: 35 kg/acre under moist field condition.</p>
+            <span class="fert-card-badge">Broadcast Required</span>
+          </div>
+        </div>
+
+        <div class="pink-footer-actions">
+          <!-- Most important button visually TINIEST -->
+          <button class="btn-tiny-critical" id="btnFinalizeDosage">
+            Finalize Fertilizer Schedule & Broadcast Orders
+          </button>
+          <!-- Secondary button styled like prominent primary -->
+          <button class="btn-large-looking-primary">
+            Verify Inventory Depot
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ======================================================================
+         SECTION 6: FARMER DIAGNOSTIC & REGISTRATION INSTRUMENT
+         Legitimate Agricultural Fields + Deadpan Unnecessary Questions (Chickens,
+         Tractor Color, 1-73 Confidence Slider, 3.8s Progress Bar)
+         ====================================================================== -->
+    <section class="section-block" id="registration-section">
+      <div class="form-master-wrapper">
+        <div class="form-title-bar">
+          <div class="form-title-titles">
+            <h3 class="form-main-heading">AGRICULTURAL FIELD DIAGNOSTIC & REGISTRATION DISPATCH</h3>
+            <h5 class="form-sub-instruction font-mono">IMPORTANT FARM INFORMATION: COMPLETE ALL MANDATORY ENTRIES ACCURATELY</h5>
+          </div>
+          <span class="form-official-stamp font-mono">FORM AG-78 / REV 9</span>
+        </div>
+
+        <form id="farmerRegistrationForm" class="farmer-form-grid" novalidate>
+          
+          <!-- Column 1: Standard Real Agricultural Fields -->
+          <div class="form-column col-standard">
+            <div class="col-section-heading">MANDATORY CROP GEOMETRY & TELEMETRY</div>
+
+            <div class="form-group">
+              <label for="farmerName">Farmer Full Legal Name</label>
+              <input type="text" id="farmerName" name="farmerName" placeholder="e.g. Ramesh Patel" class="form-input" required>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="village">Village / Mouza</label>
+                <input type="text" id="village" name="village" placeholder="e.g. Rampur" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="district">District Administration</label>
+                <input type="text" id="district" name="district" placeholder="e.g. Dharwad" class="form-input" required>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="cropSelect">Primary Sown Crop</label>
+                <select id="cropSelect" name="cropSelect" class="form-input" required>
+                  <option value="">-- Choose Crop --</option>
+                  <option value="wheat">Wheat</option>
+                  <option value="rice">Rice</option>
+                  <option value="cotton">Cotton</option>
+                  <option value="soybean">Soybean</option>
+                  <option value="onion">Onion</option>
+                  <option value="tomato">Tomato</option>
+                  <option value="maize">Maize</option>
+                  <option value="sugarcane">Sugarcane</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="landArea">Land Cultivation Area (Acres)</label>
+                <input type="number" id="landArea" name="landArea" step="0.1" min="0.5" placeholder="e.g. 4.5" class="form-input" required>
+              </div>
+            </div>
+
+            <!-- Soil Classification Profile: Small italic low contrast label -->
+            <div class="form-group low-contrast-field">
+              <label for="soilType" class="tiny-low-contrast-label"><em>Soil Classification Profile (Minor agricultural detail)</em></label>
+              <select id="soilType" name="soilType" class="form-input input-muted">
+                <option value="black-clay">Deep Black Cotton Soil (Regur)</option>
+                <option value="red-loam">Red Sandy Loam</option>
+                <option value="alluvial">Indo-Gangetic Alluvial</option>
+                <option value="laterite">Laterite Clay</option>
+              </select>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="irrigationMethod">Irrigation Method</label>
+                <select id="irrigationMethod" name="irrigationMethod" class="form-input">
+                  <option value="drip">Sub-surface Drip</option>
+                  <option value="sprinkler">Overhead Sprinkler</option>
+                  <option value="flood">Surface Basin / Flood</option>
+                  <option value="rainfed">Strictly Rainfed</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="cropAge">Current Crop Age (Days)</label>
+                <input type="number" id="cropAge" name="cropAge" placeholder="e.g. 35" class="form-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">Official SMS Contact Number</label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g. +91 98765 43210" class="form-input">
+            </div>
+          </div>
+
+          <!-- Column 2: Deadpan Bizarre Questions with Higher Visual Prominence -->
+          <div class="form-column col-evaluations">
+            <div class="col-section-heading highlight-eval">
+              ★ SUPPLEMENTARY EQUILIBRIUM ASSESSMENTS (MANDATORY)
+            </div>
+
+            <!-- Bizarre Question 1: Sentimental favorite crop -->
+            <div class="eval-card">
+              <label class="eval-label">
+                <span class="required-star">*</span> What is your sentimental favorite crop?
+              </label>
+              <div class="eval-radio-group">
+                <label class="radio-chip"><input type="radio" name="favCrop" value="Wheat" checked> Wheat</label>
+                <label class="radio-chip"><input type="radio" name="favCrop" value="Barley"> Barley</label>
+                <label class="radio-chip"><input type="radio" name="favCrop" value="Decorative Moss"> Decorative Moss</label>
+                <label class="radio-chip"><input type="radio" name="favCrop" value="Turnips"> Turnips</label>
+              </div>
+            </div>
+
+            <!-- Bizarre Question 2: Preferred tractor color -->
+            <div class="eval-card">
+              <label for="tractorColor" class="eval-label">
+                <span class="required-star">*</span> Preferred Tractor Chassis Pigment
+              </label>
+              <select id="tractorColor" name="tractorColor" class="form-input select-tractor">
+                <option value="Classic Agrarian Green">Classic Agrarian Green</option>
+                <option value="Deep Crimson Passion">Deep Crimson Passion</option>
+                <option value="Existential Slate">Existential Slate</option>
+                <option value="Raw Unpainted Galvanized Metal">Raw Unpainted Galvanized Metal</option>
+                <option value="Aggressive Sunflower Yellow">Aggressive Sunflower Yellow</option>
+              </select>
+            </div>
+
+            <!-- Bizarre Question 3: Total chickens -->
+            <div class="eval-card">
+              <div class="chicken-input-row">
+                <div class="chicken-text-block">
+                  <label for="chickenCount" class="eval-label">
+                    <span class="required-star">*</span> Total Enumerated Chickens
+                  </label>
+                  <small class="chicken-footnote">Count includes roosters, guinea fowl, and ambiguous poultry.</small>
+                </div>
+                <input type="number" id="chickenCount" name="chickenCount" value="7" min="0" max="999" class="chicken-input-spinner">
+              </div>
+            </div>
+
+            <!-- Bizarre Question 4: Circadian farming preference -->
+            <div class="eval-card">
+              <label class="eval-label">
+                <span class="required-star">*</span> Circadian Cultivation Interval
+              </label>
+              <div class="daypart-toggle-strip">
+                <button type="button" class="btn-daypart active" id="btnMorning">🌅 Morning Farming</button>
+                <button type="button" class="btn-daypart" id="btnEvening">🌇 Evening Farming</button>
+              </div>
+            </div>
+
+            <!-- Bizarre Question 5: Confidence in farming scale 1-73 -->
+            <div class="eval-card">
+              <div class="confidence-header">
+                <label for="confidenceSlider" class="eval-label">
+                  <span class="required-star">*</span> Rate your confidence in farming today (Scale 1–73):
+                </label>
+                <span class="confidence-badge" id="confidenceVal">42</span>
+              </div>
+              <input type="range" id="confidenceSlider" name="confidenceSlider" min="1" max="73" value="42" class="confidence-slider">
+              <div class="confidence-extremes font-mono">
+                <span>1 (Existential Despair)</span>
+                <span>37 (Equilibrium)</span>
+                <span>73 (Irrational Exuberance)</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Button Bar: Giant Cancel vs Pale Gray Submit -->
+          <div class="form-actions-bottom">
+            <!-- Cancel is HUGE and GREEN -->
+            <button type="button" class="btn btn-giant-green-cancel" id="btnCancelForm">
+              Cancel Form Registration & Clear Cache
+            </button>
+
+            <!-- Submit is PALE SICKLY GRAY -->
+            <button type="submit" class="btn btn-pale-gray-submit" id="btnSubmitForm">
+              Submit Advisory Request
+            </button>
+          </div>
+        </form>
+
+        <!-- Agonizingly Slow 3.8s Progress Simulation -->
+        <div class="slow-progress-container" id="slowProgressWrap" style="display: none;">
+          <div class="progress-spinner"></div>
+          <div class="progress-status-msg font-mono" id="progressStatusMsg">Calibrating dew-point algorithms against tractor pigmentation...</div>
+          <div class="progress-track-bar">
+            <div class="progress-fill-bar" id="progressFill"></div>
+          </div>
+        </div>
+
+        <!-- Calculated Prescription Output Certificate -->
+        <div class="advisory-certificate-card" id="advisoryCertCard" style="display: none;">
+          <div class="cert-header">
+            <h4>OFFICIAL COMPUTATIONAL ADVISORY CERTIFICATE #8819</h4>
+            <button class="btn-dismiss-cert" id="btnDismissCert">✕ Close</button>
+          </div>
+          <div class="cert-body" id="certBody">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: APMC MANDI DAILY MARKET PRICES
+         Misaligned column data, centered prices, 3px taller row, 6 decimals
+         ====================================================================== -->
+    <section class="section-block" id="market-section">
+      <div class="section-header-row">
+        <h3 class="section-title">AGRICULTURAL PRODUCE MARKET COMMITTEE (APMC) DAILY RATES</h3>
+        <span class="market-live-badge">● LIVE MANDI QUOTATIONS</span>
+      </div>
+
+      <div class="mandi-table-box">
+        <table class="mandi-table" id="mandiTable">
+          <thead>
+            <tr>
+              <!-- Sorting arrow attached to Market Name, but sorts by Arrival volume! -->
+              <th class="th-mandi sortable-market" id="thMarketSort">
+                Market Mandi Name <span class="misplaced-sort-arrow">▼</span>
+              </th>
+              <th class="th-commodity">Commodity Cultivar</th>
+              <th class="th-modal-price">Modal Price (₹ / Quintal)</th>
+              <th class="th-fluctuation">Daily Fluctuation</th>
+              <th class="th-volume">Arrival Volume</th>
+              <th class="th-action">Verification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-market-title">APMC Hubli Main Yard</td>
+              <td class="td-crop-right">Wheat (Sharbati)</td>
+              <td class="td-price-center font-mono">₹ 2,840</td>
+              <td class="td-change pos font-mono">+₹ 35</td>
+              <td class="td-volume-cell font-mono">420 Qtl</td>
+              <td><button class="btn-table-audit">Verify</button></td>
+            </tr>
+            <tr>
+              <td class="td-market-title">Karnal Grain Terminal</td>
+              <td class="td-crop-right">Rice (Basmati 1121)</td>
+              <td class="td-price-center font-mono">₹ 4,120</td>
+              <td class="td-change neg font-mono">-₹ 15</td>
+              <td class="td-volume-cell font-mono">890 Qtl</td>
+              <td><button class="btn-table-audit">Verify</button></td>
+            </tr>
+            <!-- SOYBEAN ROW: 3PX TALLER and EXCESSIVE 6 DECIMALS -->
+            <tr class="row-tall-soybean">
+              <td class="td-market-title">Indore APMC Division 2</td>
+              <td class="td-crop-right">Soybean (Yellow Grade)</td>
+              <td class="td-price-center price-six-decimals font-mono">₹ 4,820.000000</td>
+              <td class="td-change pos font-mono">+₹ 80</td>
+              <td class="td-volume-cell font-mono">1,240 Qtl</td>
+              <td><button class="btn-table-audit">Verify</button></td>
+            </tr>
+            <tr>
+              <td class="td-market-title">Lasalgaon Onion Mandi</td>
+              <td class="td-crop-right">Onion (Nasik Red)</td>
+              <td class="td-price-center font-mono">₹ 1,750</td>
+              <td class="td-change pos font-mono">+₹ 110</td>
+              <td class="td-volume-cell font-mono">2,600 Qtl</td>
+              <td><button class="btn-table-audit">Verify</button></td>
+            </tr>
+            <tr>
+              <td class="td-market-title">Rajkot Cotton Exchange</td>
+              <td class="td-crop-right">Cotton (Shankar-6)</td>
+              <td class="td-price-center font-mono">₹ 7,320</td>
+              <td class="td-change neg font-mono">-₹ 40</td>
+              <td class="td-volume-cell font-mono">650 Qtl</td>
+              <td><button class="btn-table-audit">Verify</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: ADVANCED AGRONOMIC METRICS (The Executive Terminal)
+         Unexplained Greek coefficients + "Recalculate Everything" Button
+         ====================================================================== -->
+    <section class="section-block" id="advanced-section">
+      <div class="advanced-hud-card">
+        <div class="hud-header">
+          <div class="hud-title-wrap">
+            <span class="hud-badge font-mono">CLASSIFIED COGNITIVE INFERENCE // LEVEL 4</span>
+            <h3 class="hud-main-title">ADVANCED AGRONOMIC TELEMETRY & INFERENCE COUPLING</h3>
+          </div>
+          <span class="hud-engine-status font-mono">ENGINE: ONLINE</span>
+        </div>
+
+        <div class="hud-metrics-grid font-mono">
+          <div class="hud-metric-item">
+            <span class="hud-greek-label">CROP INTELLIGENCE SCORE</span>
+            <span class="hud-greek-value" id="valCropScore">884.2201 λ</span>
+            <div class="hud-bar-wrap"><div class="hud-bar-fill" style="width: 88%;"></div></div>
+          </div>
+
+          <div class="hud-metric-item">
+            <span class="hud-greek-label">SOIL CONFIDENCE INDEX</span>
+            <span class="hud-greek-value" id="valSoilScore">0.9418 θ</span>
+            <div class="hud-bar-wrap"><div class="hud-bar-fill" style="width: 94%;"></div></div>
+          </div>
+
+          <div class="hud-metric-item">
+            <span class="hud-greek-label">RAINFALL RELIABILITY COEFFICIENT</span>
+            <span class="hud-greek-value" id="valRainScore">± 14.882% μ</span>
+            <div class="hud-bar-wrap"><div class="hud-bar-fill" style="width: 62%;"></div></div>
+          </div>
+
+          <div class="hud-metric-item">
+            <span class="hud-greek-label">FERTILIZER PHOSPHATE EFFICIENCY</span>
+            <span class="hud-greek-value" id="valFertScore">112.409% κ</span>
+            <div class="hud-bar-wrap"><div class="hud-bar-fill" style="width: 79%;"></div></div>
+          </div>
+
+          <div class="hud-metric-item">
+            <span class="hud-greek-label">PEST DISPERSION PROBABILITY</span>
+            <span class="hud-greek-value" id="valPestScore">0.00392 / sq.m</span>
+            <div class="hud-bar-wrap"><div class="hud-bar-fill" style="width: 24%;"></div></div>
+          </div>
+
+          <div class="hud-metric-item">
+            <span class="hud-greek-label">MARKET VOLATILITY INDEX</span>
+            <span class="hud-greek-value" id="valMarketScore">VIX-AGRI 42.1</span>
+            <div class="hud-bar-wrap"><div class="hud-bar-fill" style="width: 53%;"></div></div>
+          </div>
+        </div>
+
+        <div class="hud-recalculate-footer">
+          <button class="btn-recalculate-all" id="btnRecalculateEverything">
+            ⚠️ Recalculate Everything
+          </button>
+          <span class="hud-status-caption font-mono" id="recalcStatus">Awaiting manual cycle trigger...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 9: GOVERNMENT SCHEMES & SUBVENTIONS
+         ====================================================================== -->
+    <section class="section-block" id="schemes-section">
+      <div class="section-header-row">
+        <h3 class="section-title">GOVERNMENT SUBSIDY & AGRI INFRASTRUCTURE SCHEMES</h3>
+      </div>
+
+      <div class="schemes-accordion">
+        <details class="scheme-accordion-item" open>
+          <summary class="scheme-summary">
+            <span class="scheme-title">Pradhan Mantri Krishi Sinchayee Yojana (PMKSY) — Micro Irrigation</span>
+            <span class="scheme-pill">Subvention: 55.000%</span>
+          </summary>
+          <div class="scheme-content">
+            Financial allocation dedicated toward pressurized micro-irrigation installations. Qualifying cultivators must possess verifiable soil strata health cards with non-conflicting fowl enumeration counts.
+          </div>
+        </details>
+
+        <details class="scheme-accordion-item">
+          <summary class="scheme-summary">
+            <span class="scheme-title">National Agricultural Solar Borewell Pump Subvention 2026</span>
+            <span class="scheme-pill">Subvention: 70.000%</span>
+          </summary>
+          <div class="scheme-content">
+            Off-grid solar photovoltaic installations for 3HP, 5HP, and 7.5HP submersible water pumps across notified critical groundwater extraction basins.
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       SECTION 20: FINAL VISUAL TWIST — THE PRISTINE MINIMALIST FOOTER
+       Ultra-clean, minimalist, Apple/Vercel-level pristine typography.
+       Center: “You have reached the end.” Nothing else.
+       ======================================================================== -->
+  <footer class="pristine-minimalist-footer" id="contact-section">
+    <div class="footer-zen-center font-merriweather">
+      “You have reached the end.”
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODALS & DIALOGS
+       ======================================================================== -->
+
+  <!-- Modal 1: "Do Not Touch" Compliance Modal -->
+  <div class="modal-overlay" id="doNotTouchModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-badge-safe font-mono">NOTICE OF COMPLIANCE</span>
+        <button class="btn-close-modal" id="btnCloseHarmModal">✕</button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="modal-symbol">🌱</div>
+        <h3 class="modal-title">NON-ACTIONABLE CONTROL ACTIVATED</h3>
+        <p class="modal-text">
+          You have successfully clicked the button labeled <strong>“Do Not Touch”</strong>.
+        </p>
+        <p class="modal-subtext">
+          No agricultural process has been altered. Atmospheric pressure in District 4 is currently within normal parameters. Soil density remains compliant with standard statutory guidelines. Thank you for your restraint.
+        </p>
+      </div>
+      <div class="modal-footer justify-center">
+        <button class="btn btn-modal-confirm" id="btnAcknowledgeModal">Acknowledge Inactivity</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: "Are You Sure?" Modal on Harmless Filter Change -->
+  <div class="modal-overlay" id="confirmFilterModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-badge-warn font-mono">FILTER REVERSION PROTOCOL</span>
+      </div>
+      <div class="modal-body">
+        <p class="confirm-question font-merriweather">
+          Are you absolutely certain you want to change the crop filter? All non-displayed crops will once again become visible.
+        </p>
+      </div>
+      <div class="modal-footer-split">
+        <button class="btn btn-confirm-yes" id="btnConfirmResetYes">Yes, Restore All</button>
+        <button class="btn btn-confirm-no" id="btnConfirmResetNo">Maintain Current View</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Multi-Step Button Escalation Wizard (Section 11) -->
+  <div class="modal-overlay" id="stepEscalationModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-badge-safe font-mono" id="wizardStepCounter">STAGE 1 OF 7</span>
+        <button class="btn-close-modal" id="btnCloseWizard">✕</button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="wizard-symbol">🌾</div>
+        <h3 class="wizard-title" id="wizardHeading">Initiating Advisory Workflow</h3>
+        <p class="wizard-description" id="wizardText">
+          Please confirm your intention to advance through the standardized agronomic intelligence validation pipeline.
+        </p>
+      </div>
+      <div class="modal-footer justify-center">
+        <button class="btn btn-wizard-escalate" id="btnWizardEscalate">
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Stack for Unhelpful Toasts (Bottom-Left) -->
+  <div class="toast-stack-bottom-left" id="toastStack" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
